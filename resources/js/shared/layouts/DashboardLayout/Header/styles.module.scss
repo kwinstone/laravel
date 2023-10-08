@@ -1,0 +1,23 @@
+
+
+.logo {
+    width: 319px;
+    align-items: center;
+    height: 60px;
+    padding-left: 12px;
+    gap: 12px;
+
+    &__avatar {
+        height: 42px;
+        width: 42px;
+
+        span {
+            font-size: 17px !important;
+        }
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+}

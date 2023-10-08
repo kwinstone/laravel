@@ -4,10 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 
 use App\Http\Controllers\Auth\InitialRegistrationController;
@@ -16,11 +13,13 @@ use App\Http\Controllers\Auth\LoginController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LoginController::class, 'create'])->name('auth.login');
 Route::get('/initial-registration', [InitialRegistrationController::class, 'create'])->name('auth.initial-registration');
 Route::post('/initial-registration', [InitialRegistrationController::class, 'store'])->name('auth.store');
 
 Route::middleware('guest')->group(function () {
+    Route::get('/', [LoginController::class, 'create'])->name('auth.login');
+    Route::post('/login', [LoginController::class, 'store'])->name('auth.login.store');
+
 //
 //    Route::get('register', [RegisteredUserController::class, 'create'])
 //                ->name('register');
@@ -64,6 +63,6 @@ Route::middleware('auth')->group(function () {
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+//    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+//                ->name('logout');
 });

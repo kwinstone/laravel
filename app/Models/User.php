@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,10 +19,29 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role',
+        'permissions',
+
         'first_name',
         'last_name',
         'email',
+        'sex',
+        'country',
+        'city',
+        'birthday_date',
         'password',
+
+        'linkedin',
+        'phone',
+        'telegram',
+
+        'grade_id',
+        'position',
+
+        'work_type',
+        'work_time',
+        'hired_type',
+        'hired_date'
     ];
 
     /**
@@ -30,6 +50,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'grade_id',
         'password',
         'remember_token',
     ];
@@ -42,5 +63,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'permissions' => 'array',
+        'hired_date' => 'datetime',
+        'birthday_date' => 'datetime'
     ];
+
+    public function grade(): BelongsTo {
+        return $this->belongsTo(Grade::class, 'grade_id');
+    }
 }
