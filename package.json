@@ -31,6 +31,7 @@
     "@mantine/hooks": "^7.1.0",
     "@mantine/modals": "^7.1.0",
     "@mantine/notifications": "^7.1.0",
+    "@types/react-icons": "^3.0.0",
     "dayjs": "^1.11.10",
     "effector": "^22.8.7",
     "effector-react": "^22.5.4",

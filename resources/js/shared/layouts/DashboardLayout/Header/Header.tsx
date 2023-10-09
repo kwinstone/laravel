@@ -1,4 +1,4 @@
-import { AppShell, Avatar, Box, Divider, Flex, Kbd, Text, TextInput } from '@mantine/core';
+import { AppShell, Avatar, Divider, Flex, Kbd, Text, TextInput } from '@mantine/core';
 
 import classes from './styles.module.scss';
 import { IoSearchSharp } from 'react-icons/io5';

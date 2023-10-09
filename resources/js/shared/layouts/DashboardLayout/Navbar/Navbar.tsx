@@ -2,12 +2,15 @@ import { AppShell, Avatar, Box, Group, ScrollArea, Text, UnstyledButton } from '
 
 import classes from './styles.module.scss';
 import { router, usePage } from '@inertiajs/react';
+import { PageProps } from '@/types';
+import { links } from '@/shared/layouts/DashboardLayout/Navbar/links';
+import { LinkGroup } from '@/shared/layouts/DashboardLayout/Navbar/LinkGroup';
 import { BiChevronRight } from 'react-icons/bi';
 
 export const Navbar = () => {
   const {
     auth: { user },
-  } = usePage().props;
+  } = usePage<PageProps>().props;
 
   const handleLogout = () => {
     router.post('/logout');
@@ -15,7 +18,18 @@ export const Navbar = () => {
 
   return (
     <AppShell.Navbar>
-      <ScrollArea className={classes.links}>Links</ScrollArea>
+      <ScrollArea className={classes.links}>
+        {links.map(l => (
+          <LinkGroup
+            key={l.href}
+            label={l.label}
+            href={l.href}
+            color={l.color}
+            icon={l.icon}
+            nested_links={l.nested_links}
+          />
+        ))}
+      </ScrollArea>
       <Box className={classes.footer}>
         <UnstyledButton className={classes.user} onClick={handleLogout}>
           <Group>
